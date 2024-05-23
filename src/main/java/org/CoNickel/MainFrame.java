@@ -15,6 +15,7 @@ public class MainFrame extends JFrame {
 	}
 
 	void ReInit() {
+//		TaskManager.Tasks.get(1);
 
 
 		pack();

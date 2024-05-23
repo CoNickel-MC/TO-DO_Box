@@ -12,4 +12,26 @@ public enum Priority {
 
 		return names;
 	}
+
+	public static Priority getEm(String str){
+		switch (str){
+			case ("Ehhh") -> {
+				return Ehhh;
+			}
+			case ("CanDo") -> {
+				return CanDo;
+			}
+			case ("NeedToDo") -> {
+				return NeedToDo;
+			}
+			case ("IMPORTANT") -> {
+				return IMPORTANT;
+			}
+			default -> {
+				return null;
+			}
+		}
+
+
+	}
 }

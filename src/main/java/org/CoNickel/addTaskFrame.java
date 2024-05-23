@@ -2,36 +2,54 @@ package org.CoNickel;
 
 import javax.swing.*;
 
-import java.util.Arrays;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import static org.CoNickel.Priority.*;
 
+public class addTaskFrame extends JFrame implements ActionListener {
+	JTextArea Task;
+	JComboBox PriorityBox;
+	String[] Priorities;
 
-public class addTaskFrame extends JFrame {
 	public addTaskFrame() {
-		String[] Priorities = Priority.names();
-		JComboBox PriorityBox= new JComboBox(Priorities);
+		Priorities = Priority.names();
+
+		PriorityBox = new JComboBox(Priorities);
 		PriorityBox.setBounds(2,2,200,200);
 
 
-		JTextArea Task = new JTextArea();
+
+		Task = new JTextArea();
 		Task.setBounds(2,2,200,200);
 
 
-		JButton Confirm = new JButton();
+		JButton Confirm;
+		Confirm = new JButton();
 		Confirm.setBounds(2,2,200,200);
+		Confirm.addActionListener(this);
 
-		setLayout(null);
+		setLayout(new GridLayout(3,3));
 		add(PriorityBox);
 		add(Task);
 		add(Confirm);
 
-//		TaskManager.addTask(new TaskPanel(Task.getText(),
-//
-//
-//				Priority[PriorityBox.getSelectedIndex()]));
+
 		//DO DEADLINE
 		pack();
 		setVisible(true);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
+		TaskManager.addTask(new TaskPanel(Task.getText(), Priority.getEm(
+				Priorities[
+						PriorityBox.getSelectedIndex()
+						]
+		)));
+		System.out.println(TaskManager.Tasks);
+		this.dispose();
+
 	}
 }
