@@ -49,6 +49,7 @@ public class addTaskFrame extends JFrame implements ActionListener {
 						]
 		)));
 		System.out.println(TaskManager.Tasks);
+		Main.frame.ReInit();
 		this.dispose();
 
 	}
