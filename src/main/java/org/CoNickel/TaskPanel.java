@@ -2,21 +2,37 @@ package org.CoNickel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import static org.CoNickel.constant.*;
 
-public class TaskPanel extends JPanel {
+public class TaskPanel extends JPanel implements ActionListener {
 	String Task;
 	Priority priority;
 	JButton deleteButton;
+	JLabel taskAsText;
 
 	public TaskPanel(String task, Priority p) {
 		setPreferredSize(new Dimension(TaskPanelWidth, TaskPanelHeight));
 		Task = task;
 		priority = p;
-		setBackground(Color.BLACK);
-//		deleteButton.addActionListener(this);
+
+		taskAsText = new JLabel(Task);
+//		taskAsText.set
+
+		add(taskAsText);
+
+
+
+
+		deleteButton = new JButton();
+		deleteButton.setIcon(new ImageIcon(new ImageIcon("src/main/resources/dustbinIcon.png").getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH)));
+		deleteButton.addActionListener(this);
+		deleteButton.setSize(20,30);
+
+		add(deleteButton);
 	}
 
 	void delete(){
@@ -41,6 +57,11 @@ public class TaskPanel extends JPanel {
 		GradientPaint gp = new GradientPaint(0, 0, color1, w, h, color2);
 		g2d.setPaint(gp);
 		g2d.fillRect(0, 0, w, h);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		delete();
 	}
 }
 

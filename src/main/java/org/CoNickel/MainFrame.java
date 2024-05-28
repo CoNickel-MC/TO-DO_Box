@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.CoNickel.constant.*;
@@ -34,7 +37,23 @@ public class MainFrame extends JFrame {
 
 		setBackground(new Color(255,255,255));
 		setVisible(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+
+
+		//CLOSING WINDOW // STORAGE
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				try {
+					StorageManager.Save();
+				} catch (IOException ex) {
+					throw new RuntimeException(ex);
+				}
+
+				System.exit(0);
+			}
+		});
+
+
 		ReInit();
 	}
 
